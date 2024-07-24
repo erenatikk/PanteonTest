@@ -1,0 +1,6 @@
+@PanteonBackend_HostAddress = http://localhost:5251
+
+GET {{PanteonBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

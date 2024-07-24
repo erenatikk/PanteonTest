@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "5ktT8jmkqTC6Wa8dUs901sWI9iPy21nLA9ImIbvCpdI=",
+  "Source": "PanteonBackend",
+  "BasePath": "_content/PanteonBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
