@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.formDiv {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+form {
+
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+input {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    width: 60%;
+    margin-left: 70px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+
+
+
+
+h1 {
+    font-family: sans-serif,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

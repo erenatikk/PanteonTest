@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    /* background: rgb(27,78,185);
+    background: linear-gradient(356deg, rgba(27,78,185,1) 0%, rgba(27,38,148,1) 12%, rgba(89,65,13,1) 100%);   */
+    background-color: white;
+  }
+
+  button {
+    background-color: rgb(250, 188, 72);
+    height: 40px;   
+    width: 100px;
+    margin-top: 50px;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color:rgb(202, 118, 7);
+    color: white;
+    border: none;
+}
