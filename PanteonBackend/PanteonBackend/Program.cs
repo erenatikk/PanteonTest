@@ -26,7 +26,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
@@ -81,6 +80,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// HTTP ve HTTPS yapılandırmasını ekleyin
 app.UseHttpsRedirection();
 
 app.UseCors("AllowReactApp");
@@ -92,5 +92,14 @@ app.MapControllers();
 app.MapConfigEndpoints();
 app.MapIdentityEndpoints();
 
+// HTTPS için Kestrel yapılandırmasını ekleyin
+app.UseKestrel(options =>
+{
+    options.ListenAnyIP(5000); // HTTP
+    options.ListenAnyIP(5100, listenOptions =>
+    {
+        listenOptions.UseHttps("/etc/ssl/certs/aspnetcore-selfsigned.crt", "/etc/ssl/private/aspnetcore-selfsigned.key");
+    });
+});
 
 app.Run();
