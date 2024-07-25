@@ -1,0 +1,32 @@
+name: panteon-app
+services:
+  - name: backend
+    environment_slug: node-js
+    source_dir: ./PanteonBackend
+    run_command: dotnet PanteonBackend.dll
+    build_command: dotnet publish -c Release -o out
+    http_port: 5100
+    env:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+    routes:
+      - path: /api
+  - name: frontend
+    environment_slug: static-sites
+    source_dir: ./panteon-dashboard
+    build_command: npm install && npm run build
+    http_port: 3001
+    routes:
+      - path: /
+      - path: /static/*
+databases:
+  - name: mongodb
+    engine: mongodb
+    version: "4.4"
+    cluster_size: db-s-1vcpu-1gb
+    db_name: panteon_config_db
+    db_user: panteon_user
+    db_password: panteon123
+    env:
+      - key: MONGODB_URI
+        value: ${MONGODB_URI}
