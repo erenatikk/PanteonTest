@@ -78,7 +78,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     serverOptions.ListenAnyIP(5000); // HTTP
     serverOptions.ListenAnyIP(5100, listenOptions =>
     {
-        listenOptions.UseHttps("/etc/ssl/certs/aspnetcore-selfsigned.crt", "/etc/ssl/private/aspnetcore-selfsigned.key");
+        listenOptions.UseHttps("/etc/ssl/certs/aspnetcore-selfsigned.pfx", "YourPasswordHere");
     });
 });
 
