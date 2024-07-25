@@ -11,6 +11,7 @@ using Panteon_Backend.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +73,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5000); // HTTP
+    serverOptions.ListenAnyIP(5100, listenOptions =>
+    {
+        listenOptions.UseHttps("/etc/ssl/certs/aspnetcore-selfsigned.crt", "/etc/ssl/private/aspnetcore-selfsigned.key");
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -80,7 +90,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// HTTP ve HTTPS yapılandırmasını ekleyin
 app.UseHttpsRedirection();
 
 app.UseCors("AllowReactApp");
@@ -91,15 +100,5 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapConfigEndpoints();
 app.MapIdentityEndpoints();
-
-// HTTPS için Kestrel yapılandırmasını ekleyin
-app.UseKestrel(options =>
-{
-    options.ListenAnyIP(5000); // HTTP
-    options.ListenAnyIP(5100, listenOptions =>
-    {
-        listenOptions.UseHttps("/etc/ssl/certs/aspnetcore-selfsigned.crt", "/etc/ssl/private/aspnetcore-selfsigned.key");
-    });
-});
 
 app.Run();
