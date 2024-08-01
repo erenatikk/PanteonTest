@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         builder =>
         {
-            builder.WithOrigins("http://64.226.120.229", "https://64.226.120.229","http://localhost:3001", "https://localhost:5100")
+            builder.WithOrigins("http://3.120.205.237", "https://3.120.205.237","http://localhost:3001", "https://localhost:5100")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -84,10 +84,14 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
