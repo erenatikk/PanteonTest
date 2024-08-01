@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://localhost:5100",
+  baseURL: "https://3.120.205.237:5100",
 });
 
 export const login = (credentials) => {
