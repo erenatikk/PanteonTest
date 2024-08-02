@@ -29,12 +29,12 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
+    options.AddPolicy("AllowAll",
         builder =>
         {
-            builder.WithOrigins("http://3.120.205.237", "https://3.120.205.237","http://localhost:3001", "https://localhost:5100","http://3.74.163.46", "https://3.74.163.46")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
         });
 });
 
@@ -90,7 +90,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI();
