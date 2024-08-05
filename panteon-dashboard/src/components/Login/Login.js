@@ -49,7 +49,12 @@ function Login() {
           {error && <p className="error">{error}</p>}
           <button type="submit">Login</button>
         </form>
-          Don't have an account? <span onClick={handleNavigateToRegister} style={{ color: 'blue', cursor: 'pointer' }}>Register here</span>
+        <p className="login-text">
+          Don't have an account?{" "}
+          <span onClick={handleNavigateToRegister} className="login-link">
+            Register here
+          </span>
+        </p>
 
       </div>
     </div>
