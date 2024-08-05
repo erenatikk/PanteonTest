@@ -53,6 +53,7 @@ function Register() {
           <button type="submit">Register</button>
         </form>
         {error && <p className="error">{error}</p>}
+        <p>Already have an account? <Link to="/login">Login here</Link></p>
 
       </div>
     </div>
