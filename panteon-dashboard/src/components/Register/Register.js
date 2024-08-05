@@ -57,7 +57,12 @@ function Register() {
           <button type="submit">Register</button>
         </form>
         {error && <p className="error">{error}</p>}
-          Already have an account? <span onClick={handleNavigateToLogin} style={{ color: 'blue', cursor: 'pointer' }}>Login here</span>
+        <p className="login-text">
+          Do you have an account?{" "}
+          <span onClick={handleNavigateToLogin} className="login-link">
+            Register here
+          </span>
+        </p>
 
       </div>
     </div>
