@@ -23,6 +23,10 @@ function Login() {
     }
   };
 
+   const handleNavigateToRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="container">
       <div className="formDiv">
@@ -45,7 +49,7 @@ function Login() {
           {error && <p className="error">{error}</p>}
           <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <Link to="/register">Register here</Link></p>
+          Don't have an account? <span onClick={handleNavigateToRegister} style={{ color: 'blue', cursor: 'pointer' }}>Register here</span>
 
       </div>
     </div>
