@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Configuration.css";
-import { getConfigurations, updateConfiguration } from "../../api";
+import { getConfigurations, addConfiguration } from "../../api";
 
 const buildingTypes = [
   "Farm",
@@ -45,7 +45,7 @@ const Configuration = () => {
     setShowModal(true);
   };
 
-  const handleUpdateConfiguration = async () => {
+  const handleAddConfiguration = async () => {
     if (parseInt(buildingCost) < 0) {
       setError("Building Cost cannot be negative");
       setShowErrorModal(true);
@@ -57,35 +57,31 @@ const Configuration = () => {
       return;
     }
 
-    const updatedConfiguration = {
+    const newConfiguration = {
       buildingType,
       buildingCost: parseInt(buildingCost),
-      constructionTime: parseInt(constructionTime) 
+      constructionTime: parseInt(constructionTime),
     };
 
     try {
-      console.log("Güncelleme işlemi başladı", updatedConfiguration);
-      const response = await addConfiguration(updatedConfiguration);
-      console.log("Güncelleme işlemi başarılı", response);
-      setConfigurations((prevConfigs) =>
-        prevConfigs.map((config) =>
-          config.buildingType === buildingType ? response.data : config
-        )
-      );
+      console.log("Ekleme işlemi başladı", newConfiguration);
+      const response = await addConfiguration(newConfiguration);
+      console.log("Ekleme işlemi başarılı", response);
+      setConfigurations([...configurations, response.data]);
       setShowModal(false);
       setBuildingType("");
       setBuildingCost("");
       setConstructionTime("");
       setError("");
     } catch (error) {
-      console.error("Error updating configuration:", error);
+      console.error("Error adding configuration:", error);
     }
   };
 
   return (
     <div className="configuration-container">
       <button className="addButton" onClick={() => handleShowModal(null)}>
-        Update Configuration
+        Add Configuration
       </button>
       <div className="tableDiv">
         <table>
@@ -111,7 +107,7 @@ const Configuration = () => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <h3>Edit Configuration</h3>
+            <h3>Add Configuration</h3>
             <select
               value={buildingType}
               onChange={(e) => setBuildingType(e.target.value)}
@@ -140,8 +136,8 @@ const Configuration = () => {
               placeholder="Construction Time"
               required
             />
-            <button className="modalButton" onClick={handleUpdateConfiguration}>
-              Update
+            <button className="modalButton" onClick={handleAddConfiguration}>
+              Add
             </button>
             <button className="modalButton" onClick={() => setShowModal(false)}>
               Cancel
