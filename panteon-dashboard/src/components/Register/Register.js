@@ -24,6 +24,10 @@ function Register() {
     }
   };
 
+  const handleNavigateToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="container">
       <div className="formDiv">
@@ -53,7 +57,7 @@ function Register() {
           <button type="submit">Register</button>
         </form>
         {error && <p className="error">{error}</p>}
-        <p>Already have an account? <Link to="/login">Login here</Link></p>
+          Already have an account? <span onClick={handleNavigateToLogin} style={{ color: 'blue', cursor: 'pointer' }}>Login here</span>
 
       </div>
     </div>
