@@ -1,8 +1,23 @@
 import axios from "axios";
 
+
+const token = localStorage.getItem('token'); 
+
 const api = axios.create({
   baseURL: "https://3.120.205.237:5100",
 });
+
+api.interceptors.request.use(
+  config => {
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 export const login = (credentials) => {
   return api.post("/identity/login", credentials);
