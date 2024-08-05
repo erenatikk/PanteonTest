@@ -65,7 +65,7 @@ const Configuration = () => {
 
     try {
       console.log("Güncelleme işlemi başladı", updatedConfiguration);
-      const response = await updateConfiguration(updatedConfiguration);
+      const response = await addConfiguration(updatedConfiguration);
       console.log("Güncelleme işlemi başarılı", response);
       setConfigurations((prevConfigs) =>
         prevConfigs.map((config) =>
